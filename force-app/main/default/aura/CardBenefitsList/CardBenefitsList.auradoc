@@ -1,0 +1,5 @@
+<aura:documentation>
+    <aura:description>
+        Componente Aura para listar beneficios de tarjeta ordenados por prioridad.
+    </aura:description>
+</aura:documentation>

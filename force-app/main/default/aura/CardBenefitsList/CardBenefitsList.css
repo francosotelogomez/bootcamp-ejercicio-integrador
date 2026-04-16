@@ -1,0 +1,10 @@
+.THIS .table-wrapper {
+    overflow-x: auto;
+}
+
+.THIS .error-box {
+    color: #ba0517;
+    background: #fff1f0;
+    border: 1px solid #f5c2c7;
+    border-radius: 4px;
+}
