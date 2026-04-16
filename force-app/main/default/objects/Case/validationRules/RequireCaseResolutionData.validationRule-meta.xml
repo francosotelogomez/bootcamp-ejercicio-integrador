@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>RequireCaseResolutionData</fullName>
+    <active>true</active>
+    <description>Valida que los campos obligatorios del caso estén completos cuando el caso se encuentra en estado En Revisión.</description>
+    <errorConditionFormula>AND(
+  ISPICKVAL(Status, &quot;En Revisión&quot;),
+  OR(
+    ISBLANK(Analysis__c),
+    ISBLANK(Internal_Observations__c),
+    ISBLANK(Final_Resolution__c)
+  )
+)</errorConditionFormula>
+    <errorMessage>Para mantener el caso en En Revisión, debe completar Análisis, Observaciones Internas y Resolución Final.</errorMessage>
+</ValidationRule>

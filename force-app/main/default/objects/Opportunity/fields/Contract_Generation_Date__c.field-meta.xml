@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Contract_Generation_Date__c</fullName>
+    <description>Registra la fecha y hora en la que se generó el contrato de la oportunidad.</description>
+    <inlineHelpText>Indica la fecha y hora en la que se generó el documento contractual.</inlineHelpText>
+    <label>Fecha de Generación de Contrato</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackTrending>false</trackTrending>
+    <type>DateTime</type>
+</CustomField>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Maximum_Credit_Limit__c</fullName>
+    <description>Almacena el monto máximo referencial de línea de crédito ofrecido para este producto.</description>
+    <inlineHelpText>Ingrese la línea de crédito máxima referencial para este producto.</inlineHelpText>
+    <label>Línea de Crédito Máxima</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <trackHistory>false</trackHistory>
+    <type>Currency</type>
+</CustomField>

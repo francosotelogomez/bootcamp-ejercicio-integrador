@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>PreventDirectContractCreation</fullName>
+    <active>true</active>
+    <description>Previene crear una oportunidad en algun stage diferente a inicio o evaluación.</description>
+    <errorConditionFormula>AND(
+  ISNEW(),
+  OR(
+    ISPICKVAL(StageName, &quot;Contrato&quot;),
+    ISPICKVAL(StageName, &quot;Closed Won&quot;),
+    ISPICKVAL(StageName, &quot;Closed Lost&quot;)
+  )
+)</errorConditionFormula>
+    <errorDisplayField>StageName</errorDisplayField>
+    <errorMessage>No se puede crear una oportunidad directamente en la etapa de Contrato, Closed Won o Closed Lost.</errorMessage>
+</ValidationRule>

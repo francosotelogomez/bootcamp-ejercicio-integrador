@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Card_Type__c</fullName>
+    <description>Define la categoría o tipo de tarjeta de crédito asignada al cliente.</description>
+    <inlineHelpText>Seleccione el tipo de tarjeta de crédito correspondiente.</inlineHelpText>
+    <label>Tipo de Tarjeta</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Visa</fullName>
+                <default>true</default>
+                <label>Visa</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

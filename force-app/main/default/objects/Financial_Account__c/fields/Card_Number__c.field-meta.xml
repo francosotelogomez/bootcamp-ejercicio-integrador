@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Card_Number__c</fullName>
+    <description>Almacena el número de tarjeta de crédito asociado a la cuenta financiera. Este campo contiene información sensible y debe tener acceso restringido según el rol del usuario.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Ingrese el número de la tarjeta asignada al cliente. Este campo es confidencial y puede estar restringido según su perfil.</inlineHelpText>
+    <label>Numero de tarjeta</label>
+    <length>29</length>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

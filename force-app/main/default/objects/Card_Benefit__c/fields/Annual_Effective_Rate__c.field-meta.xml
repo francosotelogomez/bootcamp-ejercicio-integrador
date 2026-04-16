@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Annual_Effective_Rate__c</fullName>
+    <description>Indica la tasa efectiva anual aplicable al producto de tarjeta de crédito asociado.</description>
+    <inlineHelpText>Ingrese la tasa efectiva anual correspondiente a la tarjeta.</inlineHelpText>
+    <label>Tasa Efectiva Anual</label>
+    <precision>7</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Percent</type>
+</CustomField>

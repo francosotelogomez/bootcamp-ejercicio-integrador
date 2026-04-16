@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Is_Approved__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>Indica si la oportunidad ha sido aprobada por el analista en el proceso de aprobación.</description>
+    <label>Aprobado</label>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

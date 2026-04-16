@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Issue_Date__c</fullName>
+    <description>Representa la fecha en la que la tarjeta de crédito fue emitida al cliente.</description>
+    <inlineHelpText>Seleccione la fecha en que se emitió la tarjeta.</inlineHelpText>
+    <label>Fecha de Emisión</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Date</type>
+</CustomField>

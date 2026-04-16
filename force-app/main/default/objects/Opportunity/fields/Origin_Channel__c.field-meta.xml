@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Origin_Channel__c</fullName>
+    <description>Indica el canal por el cual se originó la oportunidad comercial.</description>
+    <inlineHelpText>Seleccione el canal de origen de la oportunidad.</inlineHelpText>
+    <label>Canal de Origen</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetName>Origin_Channel_Values</valueSetName>
+    </valueSet>
+</CustomField>
