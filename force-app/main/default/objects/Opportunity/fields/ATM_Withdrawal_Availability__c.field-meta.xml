@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>ATM_Withdrawal_Availability__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>Indica si la tarjeta aprobada permite retiros en cajeros automáticos.</description>
+    <inlineHelpText>Marque esta casilla si la tarjeta permite retiros en cajeros automáticos.</inlineHelpText>
+    <label>Disponibilidad de Retiro en Cajero</label>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

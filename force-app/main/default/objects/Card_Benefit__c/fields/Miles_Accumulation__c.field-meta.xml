@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Miles_Accumulation__c</fullName>
+    <description>Describe la mecánica de acumulación de millas asociada a la tarjeta de crédito.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Ingrese la forma en que la tarjeta acumula millas. Ejemplo: 1 milla por cada dólar consumido.</inlineHelpText>
+    <label>Acumulación de Millas</label>
+    <length>100</length>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

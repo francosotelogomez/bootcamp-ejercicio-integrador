@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Product_Description__c</fullName>
+    <description>Registra un resumen comercial del producto de tarjeta de crédito y el público objetivo al que está dirigido.</description>
+    <inlineHelpText>Ingrese una descripción general del producto y el segmento de clientes al que está orientado.</inlineHelpText>
+    <label>Descripción del Producto</label>
+    <length>1000</length>
+    <trackHistory>false</trackHistory>
+    <type>LongTextArea</type>
+    <visibleLines>4</visibleLines>
+</CustomField>

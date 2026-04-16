@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Case_Subtype__c</fullName>
+    <label>Subtipo de Caso</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <controllingField>Case_Type__c</controllingField>
+        <restricted>true</restricted>
+        <valueSetName>Case_Subtype_Values</valueSetName>
+        <valueSettings>
+            <controllingFieldValue>Consumo Doble</controllingFieldValue>
+            <valueName>Consumo duplicado nacional</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Consumo Doble</controllingFieldValue>
+            <valueName>Consumo duplicado internacional</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Cobro de Membresía</controllingFieldValue>
+            <valueName>Membresía anual</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Cobro de Membresía</controllingFieldValue>
+            <valueName>Membresía no informada</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Cobro No Reconocido</controllingFieldValue>
+            <valueName>Compra presencial</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Cobro No Reconocido</controllingFieldValue>
+            <valueName>Compra por internet</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Error de Facturación</controllingFieldValue>
+            <valueName>Intereses mal calculados</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Error de Facturación</controllingFieldValue>
+            <valueName>Cargo administrativo incorrecto</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Otros Reclamos</controllingFieldValue>
+            <valueName>Bloqueo de tarjeta</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Otros Reclamos</controllingFieldValue>
+            <valueName>Reverso pendiente</valueName>
+        </valueSettings>
+    </valueSet>
+</CustomField>

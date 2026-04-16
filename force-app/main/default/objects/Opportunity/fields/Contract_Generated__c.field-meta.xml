@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Contract_Generated__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>Indica si el documento contractual de la oportunidad ya fue generado en el sistema.</description>
+    <inlineHelpText>Marque esta casilla cuando el contrato de la oportunidad haya sido generado.</inlineHelpText>
+    <label>Contrato Generado</label>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

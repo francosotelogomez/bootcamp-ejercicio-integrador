@@ -1,0 +1,104 @@
+<aura:component controller="CardBenefitController"
+                implements="flexipage:availableForAllPageTypes,force:appHostable"
+                access="global">
+
+    <aura:attribute name="benefits" type="Card_Benefit__c[]"/>
+    <aura:attribute name="errorMessage" type="String"/>
+    <aura:attribute name="isLoading" type="Boolean" default="true"/>
+
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+
+    <lightning:card title="Beneficios de Tarjeta">
+        <aura:if isTrue="{!v.isLoading}">
+            <div class="slds-p-around_medium slds-text-align_center">
+                <lightning:spinner alternativeText="Cargando beneficios" size="medium"/>
+            </div>
+        <aura:set attribute="else">
+            <aura:if isTrue="{!not(empty(v.errorMessage))}">
+                <div class="slds-p-around_medium error-box">
+                    {!v.errorMessage}
+                </div>
+            <aura:set attribute="else">
+                <aura:if isTrue="{!empty(v.benefits)}">
+                    <div class="slds-p-around_medium slds-text-color_weak">
+                        No hay beneficios registrados.
+                    </div>
+                <aura:set attribute="else">
+                    <div class="slds-p-around_medium table-wrapper">
+                        <table class="slds-table slds-table_cell-buffer slds-table_bordered slds-table_striped">
+                            <thead>
+                                <tr class="slds-line-height_reset">
+                                    <th scope="col">
+                                        <div class="slds-truncate" title="Tarjeta">Tarjeta</div>
+                                    </th>
+                                    <th scope="col">
+                                        <div class="slds-truncate" title="Producto">Producto</div>
+                                    </th>
+                                    <th scope="col">
+                                        <div class="slds-truncate" title="TEA">TEA</div>
+                                    </th>
+                                    <th scope="col">
+                                        <div class="slds-truncate" title="Millas">Millas</div>
+                                    </th>
+                                    <th scope="col">
+                                        <div class="slds-truncate" title="Cashback">Cashback</div>
+                                    </th>
+                                    <th scope="col">
+                                        <div class="slds-truncate" title="Cuota Anual">Cuota Anual</div>
+                                    </th>
+                                    <th scope="col">
+                                        <div class="slds-truncate" title="Prioridad">Prioridad</div>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <aura:iteration items="{!v.benefits}" var="benefit">
+                                    <tr>
+                                        <td>
+                                            <div class="slds-truncate" title="{!benefit.Card_Name__c}">
+                                                {!benefit.Card_Name__c}
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="slds-truncate" title="{!benefit.Product__r.Name}">
+                                                {!benefit.Product__r.Name}
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="slds-truncate" title="{!benefit.Annual_Effective_Rate__c}">
+                                                {!benefit.Annual_Effective_Rate__c}%
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="slds-truncate" title="{!benefit.Miles_Accumulation__c}">
+                                                {!benefit.Miles_Accumulation__c}
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="slds-truncate" title="{!benefit.Cashback_Percentage__c}">
+                                                {!benefit.Cashback_Percentage__c}%
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="slds-truncate" title="{!benefit.Annual_Fee__c}">
+                                                S/ {!benefit.Annual_Fee__c}
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="slds-truncate" title="{!benefit.Priority__c}">
+                                                {!benefit.Priority__c}
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </aura:iteration>
+                            </tbody>
+                        </table>
+                    </div>
+                </aura:set>
+                </aura:if>
+            </aura:set>
+            </aura:if>
+        </aura:set>
+        </aura:if>
+    </lightning:card>
+</aura:component>

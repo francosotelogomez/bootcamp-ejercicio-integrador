@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Minimum_Requirements__c</fullName>
+    <description>Describe las condiciones mínimas requeridas para acceder al producto financiero.</description>
+    <inlineHelpText>Ingrese los requisitos mínimos que debe cumplir el cliente para acceder a este producto.</inlineHelpText>
+    <label>Requisitos Mínimos</label>
+    <length>1000</length>
+    <trackHistory>false</trackHistory>
+    <type>LongTextArea</type>
+    <visibleLines>4</visibleLines>
+</CustomField>

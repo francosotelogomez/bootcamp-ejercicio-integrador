@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Notification_Sent__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>Indica si ya se envió la notificación al cliente con la resolución del caso.</description>
+    <inlineHelpText>Se marca automáticamente cuando se envía la notificación de cierre del caso.</inlineHelpText>
+    <label>Notificación Enviada</label>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

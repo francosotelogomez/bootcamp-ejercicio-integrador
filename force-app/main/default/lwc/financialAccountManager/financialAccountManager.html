@@ -1,0 +1,101 @@
+<template>
+    <lightning-card title="Cuentas Financieras">
+        <div class="slds-p-horizontal_medium slds-p-top_small slds-p-bottom_small">
+            <lightning-button
+                label="Nueva"
+                variant="brand"
+                onclick={openNewModal}>
+            </lightning-button>
+        </div>
+
+        <template if:true={isLoading}>
+            <div class="slds-p-around_medium slds-text-align_center">
+                <lightning-spinner alternative-text="Cargando" size="medium"></lightning-spinner>
+            </div>
+        </template>
+
+        <template if:false={isLoading}>
+            <lightning-datatable
+                key-field="Id"
+                data={financialAccounts}
+                columns={columns}
+                hide-checkbox-column
+                onrowaction={handleRowAction}>
+            </lightning-datatable>
+        </template>
+
+        <template if:true={showModal}>
+            <section role="dialog" tabindex="-1" class="slds-modal slds-fade-in-open">
+                <div class="slds-modal__container">
+                    <header class="slds-modal__header">
+                        <h2 class="slds-text-heading_medium">
+                            {editingId ? 'Editar Cuenta Financiera' : 'Nueva Cuenta Financiera'}
+                        </h2>
+                    </header>
+
+                    <div class="slds-modal__content slds-p-around_medium">
+                        <lightning-combobox
+                            label="Tipo"
+                            data-field="Card_Type__c"
+                            value={formData.Card_Type__c}
+                            options={cardTypeOptions}
+                            onchange={handleInputChange}
+                            required>
+                        </lightning-combobox>
+
+                        <lightning-input
+                            type="number"
+                            label="Línea"
+                            data-field="Approved_Credit_Limit__c"
+                            value={formData.Approved_Credit_Limit__c}
+                            onchange={handleInputChange}
+                            required>
+                        </lightning-input>
+
+                        <lightning-input
+                            type="date"
+                            label="Fecha de emisión"
+                            data-field="Issue_Date__c"
+                            value={formData.Issue_Date__c}
+                            onchange={handleInputChange}
+                            required>
+                        </lightning-input>
+
+                        <lightning-combobox
+                            label="Estado"
+                            data-field="Card_Status__c"
+                            value={formData.Card_Status__c}
+                            options={cardStatusOptions}
+                            onchange={handleInputChange}
+                            required>
+                        </lightning-combobox>
+
+                        <lightning-combobox
+                            label="Producto"
+                            data-field="Product__c"
+                            value={formData.Product__c}
+                            options={productOptions}
+                            onchange={handleInputChange}
+                            required>
+                        </lightning-combobox>
+                    </div>
+
+                    <footer class="slds-modal__footer">
+                        <lightning-button
+                            label="Cancelar"
+                            onclick={closeModal}>
+                        </lightning-button>
+                        <lightning-button
+                            class="slds-m-left_small"
+                            label="Guardar"
+                            variant="brand"
+                            onclick={saveFinancialAccount}
+                            loading={isLoading}>
+                        </lightning-button>
+                    </footer>
+                </div>
+            </section>
+            <div class="slds-backdrop slds-backdrop_open"></div>
+        </template>
+    </lightning-card>
+</template>

@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>66.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <assignments>
+        <name>Assign_Card_Number</name>
+        <label>Asignar Número de Tarjeta</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.Card_Number__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>GeneratedCardNumber</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>$Record.Last_4_Digits__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>GeneratedLast4Digits</elementReference>
+            </value>
+        </assignmentItems>
+    </assignments>
+    <description>Genera automáticamente un número de tarjeta simulado y sus últimos cuatro dígitos al crear una cuenta financiera.</description>
+    <environments>Default</environments>
+    <formulas>
+        <name>GeneratedCardNumber</name>
+        <dataType>String</dataType>
+        <expression>&quot;4111&quot; &amp;
+MID(
+SUBSTITUTE(
+SUBSTITUTE(
+SUBSTITUTE(
+SUBSTITUTE(
+SUBSTITUTE(
+TEXT($Flow.CurrentDateTime),
+&quot;-&quot;,
+&quot;&quot;
+),
+&quot;:&quot;,
+&quot;&quot;
+),
+&quot; &quot;,
+&quot;&quot;
+),
+&quot;T&quot;,
+&quot;&quot;
+),
+&quot;Z&quot;,
+&quot;&quot;
+),
+3,
+12
+)</expression>
+    </formulas>
+    <formulas>
+        <name>GeneratedLast4Digits</name>
+        <dataType>String</dataType>
+        <expression>RIGHT({!GeneratedCardNumber}, 4)</expression>
+    </formulas>
+    <interviewLabel>Financial Account - Generate Card Number {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Financial Account - Generate Card Number</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <start>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Assign_Card_Number</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Card_Number__c</field>
+            <operator>IsNull</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </filters>
+        <object>Financial_Account__c</object>
+        <recordTriggerType>Create</recordTriggerType>
+        <triggerType>RecordBeforeSave</triggerType>
+    </start>
+    <status>Active</status>
+</Flow>

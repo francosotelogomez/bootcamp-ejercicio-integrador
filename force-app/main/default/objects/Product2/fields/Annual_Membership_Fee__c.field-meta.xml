@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Annual_Membership_Fee__c</fullName>
+    <description>Registra el costo anual de mantenimiento o membresía asociado al producto.</description>
+    <inlineHelpText>Ingrese el monto de la membresía anual del producto.</inlineHelpText>
+    <label>Membresía Anual</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <trackHistory>false</trackHistory>
+    <type>Currency</type>
+</CustomField>

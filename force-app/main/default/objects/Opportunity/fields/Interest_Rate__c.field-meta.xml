@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Interest_Rate__c</fullName>
+    <description>Representa la tasa de interés aplicada al producto financiero aprobado en la oportunidad.</description>
+    <inlineHelpText>Ingrese la tasa de interés correspondiente al producto aprobado.</inlineHelpText>
+    <label>Tasa de Interés</label>
+    <precision>7</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackTrending>false</trackTrending>
+    <type>Percent</type>
+</CustomField>

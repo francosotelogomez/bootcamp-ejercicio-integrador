@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Main_Benefits__c</fullName>
+    <description>Almacena un resumen de los principales beneficios comerciales ofrecidos por el producto.</description>
+    <inlineHelpText>Ingrese los beneficios principales del producto, como millas, cashback o promociones.</inlineHelpText>
+    <label>Beneficios Principales</label>
+    <length>1000</length>
+    <trackHistory>false</trackHistory>
+    <type>LongTextArea</type>
+    <visibleLines>4</visibleLines>
+</CustomField>

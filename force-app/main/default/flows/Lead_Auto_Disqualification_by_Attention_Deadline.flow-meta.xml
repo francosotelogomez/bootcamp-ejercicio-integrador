@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>66.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <decisions>
+        <name>Validar_vencimiento_del_prospecto</name>
+        <label>Validar vencimiento del prospecto</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnectorLabel>No requiere acción</defaultConnectorLabel>
+        <rules>
+            <name>Debe_desestimarse</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>IsLeadExpired</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Desestimar_prospecto</targetReference>
+            </connector>
+            <label>Debe desestimarse</label>
+        </rules>
+    </decisions>
+    <description>Desestima automáticamente los prospectos que exceden el plazo máximo de atención configurado, actualizando su estado a Desestimado y registrando el motivo de cierre automático.</description>
+    <environments>Default</environments>
+    <formulas>
+        <name>IsLeadExpired</name>
+        <dataType>Boolean</dataType>
+        <expression>AND(
+    NOT(ISBLANK({!$Record.Maximum_Attention_Days__c})),
+    TODAY() &gt;= DATEVALUE({!$Record.CreatedDate}) + {!$Record.Maximum_Attention_Days__c}
+)</expression>
+    </formulas>
+    <interviewLabel>Lead - Auto Disqualification by Attention Deadline {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Lead - Desestimación Automática por Vencimiento</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordUpdates>
+        <name>Desestimar_prospecto</name>
+        <label>Desestimar prospecto</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <inputAssignments>
+            <field>Closure_Reason__c</field>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Status</field>
+            <value>
+                <stringValue>Desestimado</stringValue>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <start>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Validar_vencimiento_del_prospecto</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>IsConverted</field>
+            <operator>EqualTo</operator>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Status</field>
+            <operator>NotEqualTo</operator>
+            <value>
+                <stringValue>Desestimado</stringValue>
+            </value>
+        </filters>
+        <object>Lead</object>
+        <schedule>
+            <dayOfMonthToRun>0</dayOfMonthToRun>
+            <frequency>Daily</frequency>
+            <frequencyNumber>0</frequencyNumber>
+            <startDate>2026-04-13</startDate>
+            <startTime>02:00:00.000Z</startTime>
+        </schedule>
+        <triggerType>Scheduled</triggerType>
+    </start>
+    <status>Active</status>
+</Flow>
