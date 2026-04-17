@@ -1,17 +1,19 @@
+/**
+ * Test class for FinancialAccountManager LWC controller.
+ * Validates CRUD operations, record retrieval logic, and product filtering 
+ * for the financial account management interface.
+ */
 @isTest
 private class FinancialAccountControllerTest {
 
     @testSetup
     static void setupData() {
-        // Crear Cuenta (Cliente)
         Account acc = new Account(Name = 'Cliente Test');
         insert acc;
 
-        // Crear Producto Activo
         Product2 prod = new Product2(Name = 'Visa Oro', IsActive = true);
         insert prod;
 
-        // Crear Cuenta Financiera inicial
         Financial_Account__c fa = new Financial_Account__c(
             Name = 'FA-001',
             Cliente__c = acc.Id,
@@ -86,7 +88,6 @@ private class FinancialAccountControllerTest {
 
     @isTest
     static void testUpdateFinancialAccountError() {
-        // Caso 1: Id Nulo
         Financial_Account__c faNoId = new Financial_Account__c(Card_Type__c = 'Test');
         
         Test.startTest();

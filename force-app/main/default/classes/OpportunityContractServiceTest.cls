@@ -1,9 +1,13 @@
+/**
+ * Test class for OpportunityContractService.
+ * Validates contract generation logic, including business rule validations 
+ * and successful document creation scenarios.
+ */
 @isTest
 private class OpportunityContractServiceTest {
 
     @isTest
     static void testAllCoverageScenarios() {
-        // 1. SETUP DE DATOS
         Account acc = new Account(Name = 'Cliente Test');
         insert acc;
 
@@ -18,32 +22,27 @@ private class OpportunityContractServiceTest {
         );
         insert opp;
 
-        // --- ESCENARIO 1: ID Nulo ---
         try {
             OpportunityContractService.generateContract(null);
         } catch (Exception e) {
             System.debug('Check 1: ID nulo cubierto');
         }
 
-        // --- ESCENARIO 2: Etapa Incorrecta (Cubre el primer throw de StageName) ---
         try {
             OpportunityContractService.generateContract(opp.Id);
         } catch (Exception e) {
             System.debug('Check 2: Etapa incorrecta cubierto');
         }
 
-        // --- ESCENARIO 3: Campos Faltantes (Cubre los 4 ifs de missingFields y el throw) ---
         opp.StageName = 'Contrato';
         update opp;
         
         try {
-            // Llamamos sin llenar montos ni productos
             OpportunityContractService.generateContract(opp.Id);
         } catch (Exception e) {
             System.debug('Check 3: Campos faltantes cubierto');
         }
 
-        // --- ESCENARIO 4: Contrato ya generado (Cubre el throw de ya generado) ---
         opp.Approved_Amount__c = 1000;
         opp.Interest_Rate__c = 10;
         opp.Payment_Day__c = 5;
@@ -60,7 +59,6 @@ private class OpportunityContractServiceTest {
 
     @isTest
     static void testSuccessAndExceptions() {
-        // SETUP PARA RUTA EXITOSA
         Account acc = new Account(Name = 'Acc Exito');
         insert acc;
 
@@ -83,14 +81,12 @@ private class OpportunityContractServiceTest {
         opp.StageName = 'Contrato';
         update opp;
 
-        // --- ESCENARIO 5: RUTA EXITOSA (Generación de File y Links) ---
         Test.startTest();
         Id docId = OpportunityContractService.generateContract(opp.Id);
         Test.stopTest();
         
         System.assertNotEquals(null, docId, 'Debe generar un ContentDocumentId');
 
-        // --- ESCENARIO 6: Forzar el CATCH final (Usamos un ID que no existe para provocar un error inesperado) ---
         try {
             OpportunityContractService.generateContract('006000000000000AAA');
         } catch (Exception e) {

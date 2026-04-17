@@ -1,3 +1,8 @@
+/**
+ * Test class for CaseResolutionEmailQueueable.
+ * Validates the asynchronous email notification process for resolved cases,
+ * ensuring business rules and error handling are correctly enforced.
+ */
 @IsTest
 private class CaseResolutionEmailQueueableTest {
 

@@ -1,3 +1,8 @@
+/**
+ * Asynchronous job to handle email notifications for resolved customer cases.
+ * This class validates the case status and ensures that a final resolution 
+ * is provided before dispatching the formal communication to the customer.
+ */
 public with sharing class CaseResolutionEmailQueueable implements Queueable {
     private Id caseId;
 

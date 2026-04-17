@@ -1,3 +1,8 @@
+/**
+ * Asynchronous job to handle the delivery of credit card contracts via email.
+ * This class retrieves the latest contract version and sends it as a PDF attachment
+ * once the Opportunity reaches the Closed Won stage.
+ */
 public with sharing class OpportunityContractEmailQueueable implements Queueable {
     private Id opportunityId;
 

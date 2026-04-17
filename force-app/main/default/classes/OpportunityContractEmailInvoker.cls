@@ -1,3 +1,8 @@
+/**
+ * Invocable Action to trigger the contract email delivery process.
+ * This class acts as a bridge between Flow Builder and the asynchronous 
+ * Queueable job responsible for dispatching the contract PDF.
+ */
 public with sharing class OpportunityContractEmailInvoker {
     public class Request {
         @InvocableVariable(required=true)

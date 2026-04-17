@@ -1,3 +1,8 @@
+/**
+ * Test class for CardBenefitController.
+ * Validates the retrieval and hierarchical ordering of credit card benefits, 
+ * ensuring data is correctly displayed based on priority and product association.
+ */
 @IsTest
 private class CardBenefitControllerTest {
 
