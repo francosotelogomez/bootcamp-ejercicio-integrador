@@ -10,7 +10,6 @@ private class OpportunityContractServiceTest {
         Product2 prod = new Product2(Name = 'Producto Test', IsActive = true);
         insert prod;
 
-        // Insertar en etapa permitida para evitar reglas de validación de la Org
         Opportunity opp = new Opportunity(
             Name = 'Op Test',
             AccountId = acc.Id,
@@ -34,7 +33,7 @@ private class OpportunityContractServiceTest {
         }
 
         // --- ESCENARIO 3: Campos Faltantes (Cubre los 4 ifs de missingFields y el throw) ---
-        opp.StageName = 'Contrato'; // Cambiamos etapa para pasar el primer filtro
+        opp.StageName = 'Contrato';
         update opp;
         
         try {
@@ -91,9 +90,7 @@ private class OpportunityContractServiceTest {
         
         System.assertNotEquals(null, docId, 'Debe generar un ContentDocumentId');
 
-        // --- ESCENARIO 6: Forzar el CATCH final (Cubre el bloque catch (Exception e)) ---
-        // Pasamos un ID de oportunidad que no existe para que el SELECT inicial falle
-        // y caiga directamente en un error de sistema capturado por el catch.
+        // --- ESCENARIO 6: Forzar el CATCH final (Usamos un ID que no existe para provocar un error inesperado) ---
         try {
             OpportunityContractService.generateContract('006000000000000AAA');
         } catch (Exception e) {
