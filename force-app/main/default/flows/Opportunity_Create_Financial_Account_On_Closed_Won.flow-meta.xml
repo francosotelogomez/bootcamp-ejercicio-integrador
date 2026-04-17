@@ -17,7 +17,7 @@
         <nameSegment>OpportunityContractEmailInvoker</nameSegment>
         <offset>0</offset>
     </actionCalls>
-    <apiVersion>66.0</apiVersion>
+    <apiVersion>64.0</apiVersion>
     <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
     <description>Crea automáticamente una cuenta financiera cuando una oportunidad cambia a Closed Won.</description>
     <environments>Default</environments>

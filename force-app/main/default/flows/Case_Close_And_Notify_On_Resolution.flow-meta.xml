@@ -17,7 +17,7 @@
         <nameSegment>CaseResolutionEmailInvoker</nameSegment>
         <offset>0</offset>
     </actionCalls>
-    <apiVersion>66.0</apiVersion>
+    <apiVersion>64.0</apiVersion>
     <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
     <description>Cierra automáticamente el caso cuando se completa la información requerida en En Revisión y envía la notificación al cliente.</description>
     <environments>Default</environments>
