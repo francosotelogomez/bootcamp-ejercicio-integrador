@@ -1,3 +1,8 @@
+/**
+ * Test class for CaseResolutionEmailInvoker.
+ * Verifies the correct invocation of the asynchronous case resolution 
+ * email process from declarative tools like Flow Builder.
+ */
 @IsTest
 private class CaseResolutionEmailInvokerTest {
 

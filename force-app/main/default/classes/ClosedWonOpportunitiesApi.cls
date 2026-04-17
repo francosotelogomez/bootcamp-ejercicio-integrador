@@ -1,7 +1,10 @@
+/**
+ * REST Resource to expose Closed Won Opportunities for a specific Customer.
+ * Provides a structured response including financial details and sales ownership information.
+ */
 @RestResource(urlMapping='/v1/clientes/*/oportunidades-ganadas')
 global with sharing class ClosedWonOpportunitiesApi {
 
-    // Clases de estructura para la respuesta
     global class OpportunityItem {
         public String oportunidadId;
         public String producto;
@@ -18,7 +21,7 @@ global with sharing class ClosedWonOpportunitiesApi {
         public String nombreCliente;
         public List<OpportunityItem> oportunidadesGanadas;
         public Integer totalOportunidades;
-        public String mensaje; // Campo opcional para errores o estados
+        public String mensaje; 
     }
 
     @HttpGet
@@ -30,14 +33,12 @@ global with sharing class ClosedWonOpportunitiesApi {
         try {
             String clienteId = extractClienteId(req.requestURI);
 
-            // 1. Validación de ID presente
             if (String.isBlank(clienteId)) {
                 res.statusCode = 400;
                 responseBody.mensaje = 'El clienteId es obligatorio en la URL.';
                 return responseBody;
             }
 
-            // 2. Consulta de la Cuenta
             List<Account> accounts = [
                 SELECT Id, Name
                 FROM Account
@@ -53,7 +54,6 @@ global with sharing class ClosedWonOpportunitiesApi {
 
             Account acc = accounts[0];
 
-            // 3. Consulta de Oportunidades Ganadas
             List<Opportunity> opps = [
                 SELECT Id,
                        CloseDate,
@@ -69,7 +69,6 @@ global with sharing class ClosedWonOpportunitiesApi {
                 ORDER BY CloseDate DESC
             ];
 
-            // 4. Mapeo de resultados
             responseBody.clienteId = acc.Id;
             responseBody.nombreCliente = acc.Name;
             responseBody.oportunidadesGanadas = new List<OpportunityItem>();
@@ -92,7 +91,6 @@ global with sharing class ClosedWonOpportunitiesApi {
             res.statusCode = 200;
 
         } catch (Exception e) {
-            // Manejo de errores inesperados (ej. ID mal formado que rompe el SOQL)
             res.statusCode = 500;
             responseBody.mensaje = 'Error interno: ' + e.getMessage();
         }
@@ -112,7 +110,6 @@ global with sharing class ClosedWonOpportunitiesApi {
         List<String> parts = requestUri.split('/');
 
         for (Integer i = 0; i < parts.size(); i++) {
-            // Buscamos la posición después de 'clientes'
             if (parts[i].equalsIgnoreCase('clientes') && i + 1 < parts.size()) {
                 return parts[i + 1];
             }

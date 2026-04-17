@@ -1,13 +1,16 @@
+/**
+ * Test class for OpportunityContractEmailQueueable.
+ * Verifies the asynchronous email delivery process, ensuring that contract 
+ * attachments are correctly handled and business validations are enforced.
+ */
 @isTest
 private class OpportunityContractEmailQueueableTest {
 
     @isTest
     static void testAllPaths() {
-        // 1. Setup de datos: Cuenta con Email
         Account acc = new Account(Name = 'Cliente Test', Email__c = 'test@novabank.com');
         insert acc;
 
-        // 2. Crear un documento real (ContentVersion) para el contrato
         ContentVersion cv = new ContentVersion(
             Title = 'Contrato_Suscrito',
             PathOnClient = 'Contrato.pdf',
@@ -17,7 +20,6 @@ private class OpportunityContractEmailQueueableTest {
         insert cv;
         Id conDocId = [SELECT ContentDocumentId FROM ContentVersion WHERE Id = :cv.Id].ContentDocumentId;
 
-        // 3. Crear Oportunidad ya con el contrato marcado (Para saltar la validación al hacer update)
         Opportunity opp = new Opportunity(
             Name = 'Op Test',
             AccountId = acc.Id,
@@ -28,14 +30,10 @@ private class OpportunityContractEmailQueueableTest {
         );
         insert opp;
 
-        // --- ESCENARIO 1: ID nulo (Cubre el primer if) ---
         new OpportunityContractEmailQueueable(null).execute(null);
 
-        // --- ESCENARIO 2: Etapa no es Closed Won (Cubre el return) ---
         new OpportunityContractEmailQueueable(opp.Id).execute(null);
 
-        // --- ESCENARIO 3: Error de Email (Cubre el throw de email) ---
-        // Ahora que ya tiene contrato, la validación nos dejará pasarla a Closed Won
         opp.StageName = 'Closed Won';
         update opp;
         
@@ -48,13 +46,11 @@ private class OpportunityContractEmailQueueableTest {
             System.debug('Línea de error email cubierta');
         }
 
-        // --- ESCENARIO 4: Error de Contrato (Cubre el throw de contrato) ---
         acc.Email__c = 'valido@test.com';
         update acc;
         
-        opp.Contract_Generated__c = false; // Provocamos el error de la clase
-        // Nota: El update puede fallar por la Validation Rule de la Org, 
-        // usamos try por si acaso para que el test no muera aquí.
+        opp.Contract_Generated__c = false; 
+        
         try { update opp; } catch(Exception e) {}
 
         try {
@@ -63,7 +59,6 @@ private class OpportunityContractEmailQueueableTest {
             System.debug('Línea de error contrato cubierta');
         }
 
-        // --- ESCENARIO 5: RUTA EXITOSA (Envío de correo) ---
         opp.Contract_Generated__c = true;
         try { update opp; } catch(Exception e) {}
 

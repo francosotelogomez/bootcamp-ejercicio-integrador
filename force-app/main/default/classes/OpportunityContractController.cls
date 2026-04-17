@@ -1,3 +1,8 @@
+/**
+ * Controller class for the Opportunity Contract Visualforce page.
+ * Provides formatted data and financial information to be rendered 
+ * in the PDF contract generated for the customer.
+ */
 public with sharing class OpportunityContractController {
     private Opportunity opp;
 

@@ -1,3 +1,8 @@
+/**
+ * Controller class for the Financial Account Manager Lightning Web Component.
+ * Provides Aura-enabled methods for CRUD operations and product retrieval 
+ * to support the bank's financial asset management interface.
+ */
 public with sharing class FinancialAccountController {
 
     @AuraEnabled(cacheable=true)

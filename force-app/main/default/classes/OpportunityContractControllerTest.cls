@@ -1,9 +1,13 @@
+/**
+ * Test class for OpportunityContractController.
+ * Validates the retrieval and formatting of opportunity data used in 
+ * Visualforce-based contract generation, ensuring correct data presentation.
+ */
 @isTest
 private class OpportunityContractControllerTest {
 
     @isTest
     static void testControllerFullFlow() {
-        // 1. Datos
         Account acc = new Account(Name = 'Cliente NovaBank');
         insert acc;
 
@@ -22,7 +26,6 @@ private class OpportunityContractControllerTest {
         );
         insert opp;
 
-        // 2. Controller
         ApexPages.StandardController sc = new ApexPages.StandardController(opp);
         
         Test.startTest();
@@ -37,12 +40,10 @@ private class OpportunityContractControllerTest {
         String gDate = controller.getGeneratedDateFormatted();
         Test.stopTest();
 
-        // 3. Verificaciones Corregidas
         System.assertEquals('Cliente NovaBank', aName);
         System.assertEquals('Oportunidad Contrato Test', oName);
         System.assertEquals('Tarjeta de Crédito Platinium', pName);
         
-        // Usamos contains para evitar el error del .5 vs .50
         System.assert(amount.contains('1200.5'), 'El monto formateado es incorrecto: ' + amount);
         System.assert(rate.contains('15.5'), 'La tasa es incorrecta: ' + rate);
         
