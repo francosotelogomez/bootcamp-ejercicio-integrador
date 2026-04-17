@@ -23,9 +23,9 @@ private class OpportunityContractEmailQueueableTest {
         Opportunity opp = new Opportunity(
             Name = 'Op Test',
             AccountId = acc.Id,
-            StageName = 'EVALUACIÓN', // Etapa inicial permitida
+            StageName = 'Evaluación', 
             CloseDate = Date.today(),
-            Contract_Generated__c = true, // Marcamos esto primero
+            Contract_Generated__c = true, 
             Contract_Content_Document_Id__c = conDocId
         );
         insert opp;
@@ -37,7 +37,7 @@ private class OpportunityContractEmailQueueableTest {
         opp.StageName = 'Closed Won';
         update opp;
         
-        acc.Email__c = null; // Provocamos el error de la clase
+        acc.Email__c = null; 
         update acc;
 
         try {

@@ -14,7 +14,6 @@ private class OpportunityContractServiceTest {
         Product2 prod = new Product2(Name = 'Producto Test', IsActive = true);
         insert prod;
 
-        // Insertar en etapa permitida para evitar reglas de validación de la Org
         Opportunity opp = new Opportunity(
             Name = 'Op Test',
             AccountId = acc.Id,

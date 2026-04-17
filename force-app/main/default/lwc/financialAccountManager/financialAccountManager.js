@@ -52,7 +52,9 @@ export default class FinancialAccountManager extends LightningElement {
         { label: 'Bloqueada', value: 'Bloqueada' },
         { label: 'Cancelada', value: 'Cancelada' }
     ];
-
+    get modalTitle() {
+        return this.editingId ? 'Editar Cuenta Financiera' : 'Nueva Cuenta Financiera';
+    }
     @wire(getFinancialAccounts, { accountId: '$recordId' })
     wiredAccounts(result) {
         this.wiredAccountsResult = result;
