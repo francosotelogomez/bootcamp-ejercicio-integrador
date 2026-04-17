@@ -21,9 +21,9 @@ private class OpportunityContractEmailQueueableTest {
         Opportunity opp = new Opportunity(
             Name = 'Op Test',
             AccountId = acc.Id,
-            StageName = 'EVALUACIÓN', // Etapa inicial permitida
+            StageName = 'Evaluación', 
             CloseDate = Date.today(),
-            Contract_Generated__c = true, // Marcamos esto primero
+            Contract_Generated__c = true, 
             Contract_Content_Document_Id__c = conDocId
         );
         insert opp;
@@ -35,11 +35,10 @@ private class OpportunityContractEmailQueueableTest {
         new OpportunityContractEmailQueueable(opp.Id).execute(null);
 
         // --- ESCENARIO 3: Error de Email (Cubre el throw de email) ---
-        // Ahora que ya tiene contrato, la validación nos dejará pasarla a Closed Won
         opp.StageName = 'Closed Won';
         update opp;
         
-        acc.Email__c = null; // Provocamos el error de la clase
+        acc.Email__c = null; 
         update acc;
 
         try {
@@ -53,8 +52,7 @@ private class OpportunityContractEmailQueueableTest {
         update acc;
         
         opp.Contract_Generated__c = false; // Provocamos el error de la clase
-        // Nota: El update puede fallar por la Validation Rule de la Org, 
-        // usamos try por si acaso para que el test no muera aquí.
+        
         try { update opp; } catch(Exception e) {}
 
         try {
