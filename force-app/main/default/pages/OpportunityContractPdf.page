@@ -1,86 +1,113 @@
 <apex:page standardController="Opportunity"
-    extensions="OpportunityContractController"
-    renderAs="pdf"
-    applyBodyTag="false"
-    showHeader="false"
-    sidebar="false"
-    standardStylesheets="false">
+	extensions="OpportunityContractController"
+	renderAs="pdf"
+	applyBodyTag="false"
+	showHeader="false"
+	sidebar="false"
+	standardStylesheets="false">
 
-    <html>
-    <head>
-        <style>
-            @page {
-                size: A4;
-                margin: 2cm;
-            }
-            body {
-                font-family: Arial, sans-serif;
-                font-size: 12px;
-                color: #222;
-            }
-            .title {
-                text-align: center;
-                font-size: 20px;
-                font-weight: bold;
-                margin-bottom: 20px;
-            }
-            .subtitle {
-                text-align: center;
-                font-size: 12px;
-                margin-bottom: 20px;
-            }
-            .section {
-                margin-bottom: 18px;
-            }
-            .box {
-                border: 1px solid #999;
-                padding: 12px;
-                border-radius: 4px;
-            }
-            .label {
-                font-weight: bold;
-            }
-            .signature {
-                margin-top: 40px;
-            }
-        </style>
-    </head>
-    <body>
-        <div class="title">Contrato de Tarjeta de Crédito</div>
-        <div class="subtitle">NovaBank - Documento Contractual</div>
+	<html>
+	<head>
+		<style>
+			@page {
+				size: A4;
+				margin: 2cm;
+			}
+			body {
+				font-family: 'Helvetica', 'Arial', sans-serif;
+				font-size: 11px;
+				color: #333;
+				line-height: 1.4;
+			}
+			.header {
+				margin-bottom: 30px;
+				border-bottom: 2px solid #004481; /* Color corporativo sugerido */
+				padding-bottom: 10px;
+			}
+			.logo {
+				width: 150px;
+				display: block;
+				margin-bottom: 10px;
+			}
+			.title {
+				font-size: 22px;
+				font-weight: bold;
+				color: #004481;
+				text-transform: uppercase;
+			}
+			.subtitle {
+				font-size: 10px;
+				color: #666;
+			}
+			.section-title {
+				font-weight: bold;
+				font-size: 12px;
+				background-color: #f4f4f4;
+				padding: 5px 10px;
+				margin-bottom: 10px;
+				border-left: 4px solid #004481;
+			}
+			.section {
+				margin-bottom: 20px;
+			}
+			.data-row {
+				margin-bottom: 6px;
+				overflow: hidden;
+			}
+			.label {
+				font-weight: bold;
+				width: 180px;
+				display: inline-block;
+			}
+			.box {
+				border: 1px solid #e0e0e0;
+				padding: 15px;
+				border-radius: 4px;
+			}
+			.footer-signature {
+				margin-top: 60px;
+				text-align: center;
+				width: 250px;
+			}
+			.line {
+				border-top: 1px solid #333;
+				margin-bottom: 5px;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="header">
+            <apex:image value="{!$Resource.Logo}" alt="NovaBank Logo" width="150"/>
+            <div class="title">Contrato de Tarjeta de Crédito</div>
+			<div class="subtitle">NovaBank - Documento Oficial de Emisión</div>
+		</div>
 
-        <div class="section box">
-            <p><span class="label">Cliente:</span> {!accountName}</p>
-            <p><span class="label">Oportunidad:</span> {!opportunityName}</p>
-            <p><span class="label">Producto:</span> {!productName}</p>
-            <p><span class="label">Línea de crédito aprobada:</span> {!approvedAmountFormatted}</p>
-            <p><span class="label">Tasa de interés:</span> {!interestRateFormatted}</p>
-            <p><span class="label">Día de pago:</span> {!paymentDayFormatted}</p>
-            <p><span class="label">Fecha de generación:</span> {!generatedDateFormatted}</p>
-        </div>
+		<div class="section">
+			<div class="section-title">DETALLES DEL PRODUCTO</div>
+			<div class="box">
+				<div class="data-row"><span class="label">Titular:</span> {!accountName}</div>
+				<div class="data-row"><span class="label">ID de Oportunidad:</span> {!opportunityName}</div>
+				<div class="data-row"><span class="label">Producto Financiero:</span> {!productName}</div>
+				<div class="data-row"><span class="label">Línea de Crédito:</span> {!approvedAmountFormatted}</div>
+				<div class="data-row"><span class="label">Tasa de Interés (TEA):</span> {!interestRateFormatted}</div>
+				<div class="data-row"><span class="label">Día de Pago:</span> {!paymentDayFormatted}</div>
+				<div class="data-row"><span class="label">Fecha de Emisión:</span> {!generatedDateFormatted}</div>
+			</div>
+		</div>
 
-        <div class="section box">
-            <p class="label">Condiciones del producto</p>
-            <p>
-                El titular acepta las condiciones del producto financiero aprobado, incluyendo la línea
-                de crédito otorgada, la tasa de interés aplicable, la fecha de pago mensual, la
-                disponibilidad de retiro en cajeros automáticos y las políticas de uso establecidas por la entidad.
-            </p>
-        </div>
+		<div class="section">
+			<div class="section-title">CONDICIONES Y CLÁUSULAS</div>
+			<div class="box">
+				<p><strong>Uso del Producto:</strong> El titular acepta las condiciones del producto financiero aprobado, incluyendo la línea de crédito otorgada, la tasa de interés aplicable y las políticas de uso establecidas por la entidad.</p>
+				<p style="margin-top: 10px;"><strong>Declaración Jurada:</strong> El cliente declara haber leído y aceptado los términos y condiciones del presente contrato. El uso de la tarjeta quedará sujeto a las políticas internas del banco y a la normativa vigente.</p>
+			</div>
+		</div>
 
-        <div class="section box">
-            <p class="label">Cláusulas generales</p>
-            <p>
-                El cliente declara haber leído y aceptado los términos y condiciones del presente
-                contrato. El uso de la tarjeta quedará sujeto a las políticas internas del banco y a la
-                normativa vigente aplicable al producto financiero contratado.
-            </p>
-        </div>
-
-        <div class="signature">
-            <p>_______________________________</p>
-            <p>Firma del cliente</p>
-        </div>
-    </body>
-    </html>
+		<div class="footer-signature">
+			<div class="line"></div>
+			<div class="label" style="text-align: center; display: block;">Firma del Cliente</div>
+			<div style="font-size: 9px; color: #999;">DNI: _________________</div>
+		</div>
+	</body>
+	</html>
 </apex:page>
